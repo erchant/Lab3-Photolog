@@ -1,0 +1,25 @@
+
+
+
+
+
+<table class="table">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>email</th>
+          <th>Amigo</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user|  %>
+          <tr>
+            <td> <%= simple_format user.name %> </td>
+            <td> <%= simple_format user.email %> </td>
+            <td> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>    </td>
+           </tr>
+        <% end %>
+      </tbody>
+    </table>

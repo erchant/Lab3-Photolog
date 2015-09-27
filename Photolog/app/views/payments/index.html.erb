@@ -1,0 +1,53 @@
+  <% if current_user.admin? %>
+    <h1>Listing payments</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Comment</th>
+          <th>Day</th>
+          <th>State</th>
+          <th>User</th>
+          <th>Image</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @payments.each do |payment| %>
+          <tr>
+            <td><%= payment.comment %></td>
+            <td><%= payment.day %></td>
+            <td><%= payment.state %></td>
+            <td><%= payment.user_id %></td>
+            <td><%= image_tag payment.image.url(:thumb) %></td>
+            <td><%= link_to 'Show', payment %></td>
+            <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
+            <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+    <a href="/users/actualize"><button type="button" href="#" class="btn btn-default btn-lg btn-block">Actualizar Usuarios</button></a>
+  <% else %>
+    <h1>¡Asciende a GOLD!</h1>
+    <h4>Con nuestro sistema GOLD tendras una serie de beneficios, entre ellos la opcion de subir ilimitadas fotos diaramente y obtener un icono en tus comentarios.</h5>
+    <h5>Para comenzar a ser solo debes realizar una transferencia bancaria a los datos correctos, y posteriormente enviar la imagen del comprobante mediante el enlace "Convertirse en GOLD". Y dentro de las siguentes 24 hrs (dia habil), confirmado el pago se ascendera a GOLD</h5>
+
+    <div class="panel panel-default">
+  <div class="panel-heading">Datos de Deposito</div>
+  <div class="panel-body">
+    <h5>Bancho Estado</h5>
+    <h5>Cuenta Rut: 1282018201</h5>
+    <h5>Rut: 12020192190</h5>
+    <h5>Nombre: Dueño Photolog</h5>
+    <h5>DueñPhotolog@gmail.com</h5>
+  </div>
+</div>
+    
+
+    <%= link_to 'Convertirse en GOLD', new_payment_path %>
+    
+  <% end %>
+

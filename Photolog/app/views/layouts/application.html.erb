@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photolog</title>
+
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+</head>
+<body>
+
+  <!-- navbar -->
+   <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Photolog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+
+      <ul class="nav navbar-nav">
+
+              
+               <% if user_signed_in? %>
+              <li class="active"><a href="/images/new">Nueva Foto<span class="sr-only">(current)</span></a></li>
+               <% else %>
+                <li class="active"><a href="/">Fotos<span class="sr-only">(current)</span></a></li>
+                <% end %>
+                <% if user_signed_in? %>
+              <li><a href="/users/index">Usuarios</a></li>
+              <li class="active"><a href="/payments">Gold <span class="sr-only">(current)</span></a></li>
+              <li><a href="/users/show">Amigos</a></li>
+              <li class="active"><a href="#">Mis Fotos<span class="sr-only">(current)</span></a></li><% else %><% end %>
+             
+          </ul>
+
+      
+              <ul class="nav navbar-nav navbar-right">
+
+
+
+                    <% if user_signed_in? %>
+                      <li><a>Bienvenido, <%= current_user.email %></a></li>
+                    <% else %>
+                       <li class="active"><a href="/users/sign_up">Registrarse <span class="sr-only">(current)</span></a></li>
+                    <% end %>
+                    
+                    <% if user_signed_in? %>
+                    <li class="active"><%= link_to "Editar Perfil", edit_user_registration_path %> <span class="sr-only">(current)</span></a></li>
+                    <% else %>
+                    <% end %>
+
+
+                    <% if user_signed_in? %>
+                      <li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %></li>
+                    <% else %>
+                      <li><%= link_to "Iniciar Sesion", new_user_session_path %></li>
+                    <% end %>
+
+
+              </ul>
+           
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /.navbar -->
+
+
+
+
+
+
+<%= yield %>
+
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+  <div class="jumbotron">
+  
+    <h1>Photolog</h1>
+  <p>Comparte un mundo de imagenes</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+
+  </div>
+</div>
+
+
+  <div class="row">
+    <% @images.each do |image| %>
+        <div class="col-xs-6 col-md-3">
+          <%= link_to image.title , image %>
+          <a href="#" class="thumbnail">
+            <img src="<%= image.image.url %>"  height="2000" width="2000" >
+          </a>
+           
+
+        </div>
+   <% end %>
+    </div>
